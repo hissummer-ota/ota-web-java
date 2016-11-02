@@ -1,0 +1,321 @@
+body {
+    color: #666
+}
+
+a {
+    color: #3b8bba;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #3b8bba
+}
+
+.header {
+    border-bottom: 1px solid #ddd;
+}
+
+.header a {
+    color: #545454
+}
+
+.header .pure-menu-selected {
+    color: #dd4b39;
+    border-bottom: 3px solid #dd4b39
+}
+
+.main {
+    padding: 0 .2rem;
+}
+
+.main h3 {
+    line-height: 2.4rem;
+    color: #fff;
+    margin: .4rem 0 0;
+    padding: 0 .2rem;
+    background: #67c2f0
+}
+
+.main .active {
+    display: block
+}
+
+.app-list {
+    #display: none;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-top: 0;
+  padding: 1.2em .2rem;
+  text-align: center;
+}
+
+.app-name {
+    font-size: 1rem
+}
+.app-name {
+    width: 100%;
+      display: block;
+      float: left;
+      
+  }
+  .app-item span{
+    float: left;
+    display: block;
+    width: 100%;
+  }
+/*@media(max-width:400px){
+	.app-name {
+		width: 100%;
+  		display: block;
+  		float: left;
+   		
+	}
+	.app-item span{
+		float: left;
+		display: block;
+		width: 100%;
+	}
+
+}
+@media(min-width:400px) and (max-width: 640px){
+	.app-name {
+		width: 60%;
+  		display: block;
+  		float: left;
+   		
+	}
+	.app-item span{
+		float: left;
+		display: block;
+		width: 60%;
+	}
+
+}
+@media(min-width:640px){
+	.app-name {
+		width: 400px;
+  		display: block;
+  		float: left;
+   		
+	}
+	.app-item span{
+		float: left;
+		display: block;
+		width: 30%;
+	}
+
+}*/
+
+
+
+.app-item {
+
+	overflow: hidden;
+    line-height: 2rem;
+    border-bottom: 1px solid #ddd;
+}
+.app-item:hover{
+	background: #ccc;
+}
+
+.app-item p {
+    text-indent: 2em
+}
+
+.welcome {
+/*    padding-top: 4rem;
+    text-align: center;
+*/
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-top: 0;
+  padding: 1.2em .2rem;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.welcome .pure-button {
+    min-width: 6em
+}
+
+.welcome .button-welcome {
+    background: #1f8dd6;
+    color: #fff;
+    border: 1px solid #1f8dd6
+}
+
+.welcome .button-secondary {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ddd
+}
+
+.qrcodeShow
+{
+
+position:abosolute;
+top:30px;
+z-index:5;
+display:block;
+}
+div.builddiv{
+  line-height: 2rem;
+  color: #fff;
+  /* margin: .4rem auto; */
+  padding: 0.8em;
+  background: #67c2f0;
+  /* width:80%; */
+  border: 1px solid white;
+  border-radius: 3px;
+  margin: 8px 0px;
+}
+
+div.versiondiv{
+  line-height: 2rem;
+  color: #fff;
+  margin: .4rem auto;
+  padding: 0 .3rem;
+  background: #67c2f0;
+padding-bottom: 0.5em;
+font-size: 0.9em;
+text-align: left;
+border-radius:3px;
+  width: 95%;
+}
+
+div.builddivheader{
+font-size: 0.75em;
+  line-height: 1.5em;
+}
+
+h3.versionspan{
+width:95%;
+display:block;
+font-weight: bold;
+cursor:pointer;
+}
+
+span.buildspan{
+
+   margin-right:15px;
+  color:black;
+}
+
+div.appdiv{
+
+   margin: .4rem auto;
+   /*width:75%;*/
+
+}
+
+span.appspan{
+cursor:pointer;
+margin-left:15px;
+}
+
+.invisible{
+
+display:none;
+}
+
+.qrcode{
+}
+
+div#message {
+    margin: 1em auto 1.5em auto;
+    width: 30%;
+    background-color: #67c2f0;
+    padding: 1em;
+    border-radius: 2px;
+}
+
+div.messageerror{
+
+color:red;
+}
+
+div.messageok{
+color:green;
+}
+div#uploaddiv {
+/* text-align: left; */
+  
+margin: 0 auto 20px auto;
+  
+/* width: 500px; */
+  
+ padding: 20px 0px 20px 0px;
+  background: #67c2f0;
+  border-radius: 5px;
+  color: black;
+}
+
+h2.upload
+{
+background: #67c2f0;
+  color: white;
+
+}
+input#upload {
+  background: #1f8dd6;
+  color: #fff;
+  border: 1px solid #1f8dd6;
+  padding: 8px 20px;
+  width: 150px;
+}
+a.applink:link ,a.applink:visited ,a.applink:hover ,a.applink:active  {
+
+color:white;
+font-weight:bolder;
+font-size:1.5em;
+
+
+}
+
+hr
+{
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+height:1px;
+border:0;
+
+}
+
+div#wrap
+{
+
+#  background-color: #fafafa;
+
+}
+legend {
+    margin-bottom: 10px;
+    color: white;
+}
+div#footer {
+    width: 200px;
+    margin: 5px auto;
+}
+input,select {
+    width: 60%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: white;
+    padding: 12px 5px 12px 5px;
+}
+label{
+
+width:6em;
+display:inline-block; 
+}
+select{
+  margin-right: -12px;
+}
+fieldset{
+
+min-width: 300px;
+max-width: 600px;
+}
+img.qrimg{
+width:250px;
+}
