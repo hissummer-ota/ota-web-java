@@ -108,11 +108,11 @@
                             <option value="ios">IOS</option>
                         </select> <br/><br/>
                         <label for="version">版本:</label>
-                        <input type="text" name="version" placeholder="unKnown"><br/><br/>
+                        <input type="text" name="version" placeholder="unKnown" value="兼容包"><br/><br/>
                         <label for="codeBranch">代码分支:</label>
-                        <input type="text" name="codeBranch" placeholder="unKnown"><br/><br/>
+                        <input type="text" name="codeBranch" placeholder="unKnown" value="master"><br/><br/>
                         <label for="env">环境:</label>
-                        <input type="text" name="env" placeholder="unKnown"><br/><br/>
+                        <input type="text" name="env" placeholder="unKnown" value="38"><br/><br/>
                         <label for="comments">备注:</label>
                         <input type="text" name="comments" cols="30" placeholder="无备注"><br/><br/>
                         <label class="invisible" for="forceOverriden">强制覆盖:</label>

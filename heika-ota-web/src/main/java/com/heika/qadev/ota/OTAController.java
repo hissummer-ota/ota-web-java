@@ -15,16 +15,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Controller
 public class OTAController {
 
     public static final ReadWriteLock LOCK_FILE = new ReentrantReadWriteLock();
-    public static final Lock LOCK_UPLOAD_FILE = new ReentrantLock();
 
     private String getHeikaLogoPath(){
         String webRootRealPath = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("");
@@ -303,7 +300,7 @@ public class OTAController {
 
         appFile.getParentFile().mkdirs();
 
-        LOCK_UPLOAD_FILE.lock();
+        LOCK_FILE.writeLock().lock();
         try {
             app.transferTo(appFile);
 
@@ -330,7 +327,7 @@ public class OTAController {
             e.printStackTrace();
             sendMSG(servletResponse, e.toString(), false);
         }
-        LOCK_UPLOAD_FILE.unlock();
+        LOCK_FILE.writeLock().unlock();
 
         sendMSG(servletResponse, "上传应用成功！", true);
 
