@@ -68,7 +68,7 @@ public class FileCleanInterceptor implements HandlerInterceptor {
                         long currentTime = System.currentTimeMillis();
                         long modifyTime = versionDir.lastModified();
                         // 删除45天之间的APP文件
-                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 45)) {
+                        if (currentTime > (modifyTime + (long)1000 * 60 * 60 * 24 * 45)) {
 //                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 1)) {
                             FileUtils.deleteDirectory(versionDir);
                             System.out.println("################### Delete Dir : " + versionDir.getName());
@@ -111,6 +111,10 @@ public class FileCleanInterceptor implements HandlerInterceptor {
 
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
-        System.out.println(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 45);
+        System.out.println((long)1000 * 60 * 60 * 24 * 45);
+        System.out.println(System.currentTimeMillis() + (long)1000 * 60 * 60 * 24 * 45);
+        long currentTime = System.currentTimeMillis();
+        // 删除45天之间的APP文件
+        System.out.println(currentTime > (System.currentTimeMillis() + (long)1000 * 60 * 60 * 24 * 45));
     }
 }
