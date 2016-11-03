@@ -22,14 +22,14 @@ public class FileCleanInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println("################### Begin : FileCleanInterceptor.postHandle");
+//        System.out.println("################### Begin : FileCleanInterceptor.postHandle");
         OTAController.LOCK_FILE.writeLock().lock();
 
         filterFile(OTAUtility.CONSTANTS_IOS_DATA_FILE, OTAUtility.TOMCAT_OTA_DATA_DIR + "/IOS");
         filterFile(OTAUtility.CONSTANTS_ANDROID_DATA_FILE, OTAUtility.TOMCAT_OTA_DATA_DIR + "/ANDROID");
 
         OTAController.LOCK_FILE.writeLock().unlock();
-        System.out.println("################### Finish : FileCleanInterceptor.postHandle");
+//        System.out.println("################### Finish : FileCleanInterceptor.postHandle");
     }
 
     public void filterFile(String dataFilePath, String dataDirPath) {
@@ -63,9 +63,10 @@ public class FileCleanInterceptor implements HandlerInterceptor {
                         long currentTime = System.currentTimeMillis();
                         long modifyTime = versionDir.lastModified();
                         // 删除45天之间的APP文件
-//                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 45)) {
-                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 1)) {
+                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 45)) {
+//                        if (currentTime > (modifyTime + 1000 * 60 * 60 * 24 * 1)) {
                             FileUtils.deleteDirectory(versionDir);
+                            System.out.println("################### Delete Dir : " + versionDir.getName());
                             filteredDataMap.remove(versionDir.getName());
                         }
                     }
