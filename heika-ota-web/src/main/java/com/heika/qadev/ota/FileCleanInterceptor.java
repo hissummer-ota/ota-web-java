@@ -56,6 +56,11 @@ public class FileCleanInterceptor implements HandlerInterceptor {
 
                 File dataDir = new File(dataDirPath);
                 File[] versionDirs = dataDir.listFiles();
+
+                if(versionDirs == null){
+                    return;
+                }
+
                 for (File versionDir : versionDirs) {
                     if (versionDir.getName().equals("兼容包")) {
                         continue;
