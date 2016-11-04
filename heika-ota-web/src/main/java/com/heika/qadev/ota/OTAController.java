@@ -208,6 +208,9 @@ public class OTAController {
     private String getAppURLBasePath(HttpServletRequest servletRequest, String type, String version, String env){
         String requestURL = servletRequest.getRequestURL().toString();
         requestURL = requestURL.substring(0,requestURL.indexOf("/ota"));
+        if(requestURL.contains("qa.heika.com")){
+            requestURL = "http://172.16.1.50:9001";
+        }
         return requestURL + OTAUtility.TOMCAT_OTA_DATA_URL_BASE + "/" + type.toUpperCase() + "/" + version.toUpperCase() + "/" + env.toUpperCase() + "/";
     }
 
