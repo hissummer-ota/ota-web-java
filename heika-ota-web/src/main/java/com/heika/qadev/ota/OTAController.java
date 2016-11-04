@@ -36,11 +36,12 @@ public class OTAController {
     @RequestMapping("/ota/list")
     public String list(String type, ModelMap modelMap) throws Exception {
 
-        LOCK_FILE.readLock().lock();
-
         Map<String, List<JSONObject>> versionDataMap = new HashMap<>();
         String dataFile = getFileByFileType(type);
+        LOCK_FILE.readLock().lock();
         List<String> dataS = OTAUtility.readFileAsListOfStrings(dataFile);
+        LOCK_FILE.readLock().unlock();
+        //TODO
         for (String data : dataS) {
             if (data.trim().length() > 0) {
                 JSONObject jo = (JSONObject) JSONObject.parse(data);
@@ -78,8 +79,6 @@ public class OTAController {
         modelMap.put("versions", versions);
         modelMap.put("versionDataMap", versionDataMap);
         modelMap.put("type", type);
-
-        LOCK_FILE.readLock().unlock();
 
         return "ota/list";
     }
@@ -184,7 +183,7 @@ public class OTAController {
             String dataFile = getFileByFileType(type);
             try {
                 OTAUtility.writeFile(dataFile, jsonObj.toJSONString());
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 sendMSG(servletResponse, e.toString(), false);
                 return null;
@@ -300,7 +299,6 @@ public class OTAController {
 
         appFile.getParentFile().mkdirs();
 
-        LOCK_FILE.writeLock().lock();
         try {
             app.transferTo(appFile);
 
@@ -322,12 +320,13 @@ public class OTAController {
 
 
             String dataFile = getFileByFileType(type);
+            LOCK_FILE.writeLock().lock();
             OTAUtility.writeFile(dataFile, jsonObj.toJSONString());
+            LOCK_FILE.writeLock().unlock();
         } catch (Exception e) {
             e.printStackTrace();
             sendMSG(servletResponse, e.toString(), false);
         }
-        LOCK_FILE.writeLock().unlock();
 
         sendMSG(servletResponse, "上传应用成功！", true);
 
