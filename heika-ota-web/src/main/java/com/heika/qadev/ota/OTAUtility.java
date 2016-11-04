@@ -65,10 +65,10 @@ public class OTAUtility {
         TOMCAT_APP_BASE_DIR = OTA_CONFIG.getProperty("TOMCAT_APP_BASE_DIR");
         IOS_HTTPS_URL_BASE = "https://" + OTA_CONFIG.getProperty("IOS_HTTPS_HOST_PORT") + "/otadata";
 
-        TOMCAT_OTA_DATA_DIR = TOMCAT_APP_BASE_DIR + "/otadata";
+        TOMCAT_OTA_DATA_DIR = TOMCAT_APP_BASE_DIR + "/ota/otadata";
         CONSTANTS_IOS_DATA_FILE = TOMCAT_OTA_DATA_DIR + "/ios_data.dat";
         CONSTANTS_ANDROID_DATA_FILE = TOMCAT_OTA_DATA_DIR + "/android_data.dat";
-        TOMCAT_OTA_DATA_URL_BASE = "/otadata";
+        TOMCAT_OTA_DATA_URL_BASE = "/ota/otadata";
 
         JENKINS_WEBAPP_CONTEXT = OTA_CONFIG.getProperty("JENKINS_WEBAPP_CONTEXT");
         JENKINS_ANDROID_URL = "http://" + OTA_CONFIG.getProperty("JENKINS_HOST_PORT") +
