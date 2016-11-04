@@ -79,10 +79,6 @@
                                     String apkURL = OTAUtility.TOMCAT_OTA_DATA_URL_BASE + "/" + type.toUpperCase() + "/" + version.toUpperCase() + "/" + env.toUpperCase() + "/" + apkName;
                                     String apkPNGURL = apkURL + ".png";
 
-                                    if(apkPNGURL.contains("qa.heika.com")){
-                                        apkPNGURL = apkPNGURL.replace("qa.heika.com", "172.16.1.50:9001");
-                                    }
-
                                     out.println("<div class=\"appdiv\">" +
                                             "<span class=\"\"><a class=\"applink\" href=\"" + apkURL + "\" > " + apkName + " </a></span>" +
                                             "<span class=\"appspan\">查看二维码</span><span class=\"qrcode invisible\">" +
@@ -126,10 +122,6 @@
 
                             String pngURL = OTAUtility.TOMCAT_OTA_DATA_URL_BASE + "/" + type.toUpperCase() + "/" + version.toUpperCase() +
                                     "/" + env.toUpperCase() + "/" + appFile + ".png";
-
-                            if(pngURL.contains("qa.heika.com")){
-                                pngURL = pngURL.replace("qa.heika.com", "172.16.1.50:9001");
-                            }
 
                             out.println("<div class=\"appdiv\">" +
                                     "<span class=\"\"><a class=\"applink\" href=\"" + appURL + "\" > " + appFile + " </a></span>" +
