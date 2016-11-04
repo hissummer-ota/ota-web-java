@@ -33,6 +33,11 @@ public class OTAController {
         return "ota/index";
     }
 
+    @RequestMapping("/ota")
+    public String welcome() {
+        return "ota/index";
+    }
+
     @RequestMapping("/ota/list")
     public String list(String type, ModelMap modelMap) throws Exception {
 
