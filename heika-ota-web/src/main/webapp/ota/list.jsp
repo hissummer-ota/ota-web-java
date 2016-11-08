@@ -117,7 +117,7 @@
                         } else {
                             String appFile = (String) data.get(OTAUtility.KEY_JSON_APPFILE);
                             String appURL = OTAUtility.IOS_HTTPS_URL_BASE + "/" + type.toUpperCase() + "/" + version.toUpperCase() +
-                                    "/" + env.toUpperCase() + "/" + appFile.substring(0,appFile.indexOf(".")) + ".plist";
+                                    "/" + env.toUpperCase() + "/" + appFile.substring(0,appFile.lastIndexOf(".")) + ".plist";
                             appURL = "itms-services://?action=download-manifest&url=" + appURL;
 
                             String pngURL = OTAUtility.TOMCAT_OTA_DATA_URL_BASE + "/" + type.toUpperCase() + "/" + version.toUpperCase() +
