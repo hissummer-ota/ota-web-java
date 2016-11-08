@@ -108,7 +108,7 @@
                             <option value="ios">IOS</option>
                         </select> <br/><br/>
                         <label for="version">版本:</label>
-                        <input type="text" name="version" placeholder="unKnown" value="Compatiblity"><br/><br/>
+                        <input type="text" name="version" placeholder="unKnown" value="COMPATIBLITY"><br/><br/>
                         <label for="codeBranch">代码分支:</label>
                         <input type="text" name="codeBranch" placeholder="unKnown" value="master"><br/><br/>
                         <label for="env">环境:</label>
