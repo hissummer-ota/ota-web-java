@@ -60,7 +60,7 @@ public class FileCleanInterceptor implements HandlerInterceptor {
                 }
 
                 for (File versionDir : versionDirs) {
-                    if (versionDir.getName().equals("兼容包")) {
+                    if (versionDir.getName().equals("兼容包") || versionDir.getName().equals("Compatibility") ) {
                         continue;
                     } else {
                         long currentTime = System.currentTimeMillis();
