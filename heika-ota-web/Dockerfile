@@ -1,0 +1,10 @@
+FROM tomcat:7-jre8
+WORKDIR $CATALINA_HOME
+RUN rm -rf $CATALINA_HOME/conf/server.xml && rm -rf $CATALINA_HOME/webapps/* 
+ADD config/ota.keystore $CATALINA_HOME/conf/
+ADD config/server.xml $CATALINA_HOME/conf/
+ADD webapps/ $CATALINA_HOME/webapps/ROOT/ 
+
+EXPOSE 8443 
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
