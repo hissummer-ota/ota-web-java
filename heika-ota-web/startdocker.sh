@@ -16,12 +16,12 @@ cd `dirname $0`
 
 COUNT=`docker ps | grep ota-instance | wc -l`
 if [ $COUNT = 1 ]; then
-    docker stop ota
+    docker stop ota-instance
 fi
 
 COUNT=`docker ps -a | grep ota-instance | wc -l`
 if [ $COUNT = 1 ]; then
-    docker rm ota
+    docker rm ota-instance
 fi
 
 
