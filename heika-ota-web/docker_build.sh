@@ -21,6 +21,6 @@ cd `dirname $0`
 docker build -t $IMAGENAME .
 
 
-if [ $(docker images --filter "dangling=true" -q | wc -l) > 0 ]; then
+if [ $(docker images --filter "dangling=true" -q | wc -l) -gt 0 ]; then
     docker images --filter "dangling=true" -q | xargs docker rmi
 fi
