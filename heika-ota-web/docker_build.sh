@@ -19,8 +19,3 @@ sed -i 's#^TOMCAT_APP_BASE_DIR=.*#TOMCAT_APP_BASE_DIR=/usr/local/tomcat/webapps#
 cd `dirname $0`
 
 docker build -t $IMAGENAME .
-
-
-if [ $(docker images --filter "dangling=true" -q | wc -l) -gt 0 ]; then
-    docker images --filter "dangling=true" -q | xargs docker rmi
-fi
