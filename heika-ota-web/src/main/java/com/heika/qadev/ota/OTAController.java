@@ -170,10 +170,11 @@ public class OTAController {
 
                 // generate plist file
                 String pListName = ipaName.substring(0, ipaName.indexOf(".ipa")) + ".plist";
-                OTAUtility.writeFile(basePath + pListName, OTAUtility.generatepListContent(ipaURL, ipaName.substring(0, ipaName.indexOf(".ipa"))));
+                String appURL = getAppURLBasePath(servletRequest, type, version, env) + ipaName;
+                OTAUtility.writeFile(basePath + pListName, OTAUtility.generatepListContent(appURL, ipaName.substring(0, ipaName.indexOf(".ipa"))));
 
                 // generate QR image
-                String appURL = getISOHTTPSURLBasePath(type, version, env) + pListName;
+                appURL = getISOHTTPSURLBasePath(type, version, env) + pListName;
                 appURL = "itms-services://?action=download-manifest&url=" + appURL;
                 QRCodeUtil.encode(appURL, getHeikaLogoPath(), basePath, ipaName, true);
 
