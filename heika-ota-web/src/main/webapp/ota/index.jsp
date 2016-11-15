@@ -31,7 +31,7 @@
         </h2>
         <div class="welcome">
             <p>
-                Ota for app download TEST
+                Ota for app download
             </p>
             <p>
                 <a href="/ota/list?type=ios" class="button-welcome pure-button">ios</a>
