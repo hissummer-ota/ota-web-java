@@ -8,6 +8,10 @@ ADD webapps/ $CATALINA_HOME/webapps/ROOT/
 
 VOLUME $CATALINA_HOME/webapps/otadata
 
+# set timezone
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 EXPOSE 8443 
 EXPOSE 8080
 
