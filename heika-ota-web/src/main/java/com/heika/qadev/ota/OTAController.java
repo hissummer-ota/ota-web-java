@@ -74,6 +74,15 @@ public class OTAController {
                 // 降序排列
                 @Override
                 public int compare(JSONObject original, JSONObject toCompare) {
+
+                    if(version.equalsIgnoreCase("COMPATIBLITY")){
+                        String orgComments = original.getString(OTAUtility.KEY_JSON_COMMENTS);
+                        String toComments = toCompare.getString(OTAUtility.KEY_JSON_COMMENTS);
+                        if(!orgComments.equals(toComments)){
+                            return 0 - orgComments.compareTo(toComments);
+                        }
+                    }
+
                     String originalBuildTime = (String) original.get(OTAUtility.KEY_JSON_BUILDTIME);
                     String toCompareBuildTime = (String) toCompare.get(OTAUtility.KEY_JSON_BUILDTIME);
                     return 0 - originalBuildTime.compareTo(toCompareBuildTime);
