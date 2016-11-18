@@ -116,6 +116,11 @@ public class OTAController {
             comments = getComments(OTAUtility.CONSTANTS_UPLOADTYPE_JENKINS, buildId, env);
         }
 
+        if(env.equalsIgnoreCase("train")){
+            comments = version;
+            version = "TRAIN";
+        }
+
         JSONObject jsonObj = getCommonFileJsonObj(buildId,env,version,comments,codeBranch);
         jsonObj.put(OTAUtility.KEY_JSON_UPLOADTYPE, OTAUtility.CONSTANTS_UPLOADTYPE_JENKINS);
 
