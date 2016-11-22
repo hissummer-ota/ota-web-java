@@ -6,8 +6,6 @@ ADD config/ota.keystore $CATALINA_HOME/conf/
 ADD config/server.xml $CATALINA_HOME/conf/
 ADD webapps/ $CATALINA_HOME/webapps/ROOT/ 
 
-VOLUME $CATALINA_HOME/webapps/otadata
-
 # set timezone
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

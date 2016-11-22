@@ -80,7 +80,17 @@ public class OTAController {
                         String toComments = toCompare.getString(OTAUtility.KEY_JSON_COMMENTS);
                         if(!orgComments.equals(toComments)){
                             return 0 - orgComments.compareTo(toComments);
+                        } else {
+                            String orgEnv = original.getString(OTAUtility.KEY_JSON_ENV);
+                            String toEnv = toCompare.getString(OTAUtility.KEY_JSON_ENV);
+                            return 0 - orgEnv.compareTo(toEnv);
                         }
+                    }
+
+                    if(version.equalsIgnoreCase("TRAIN")){
+                        String orgEnv = original.getString(OTAUtility.KEY_JSON_ENV);
+                        String toEnv = toCompare.getString(OTAUtility.KEY_JSON_ENV);
+                        return 0 - orgEnv.compareTo(toEnv);
                     }
 
                     String originalBuildTime = (String) original.get(OTAUtility.KEY_JSON_BUILDTIME);
