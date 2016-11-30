@@ -16,12 +16,12 @@
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven/>
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/ota/**"/>
-            <bean class="com.heika.qadev.ota.FileCleanInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/ota/**"/>-->
+            <!--<bean class="com.heika.qadev.ota.FileCleanInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="209715200" />
