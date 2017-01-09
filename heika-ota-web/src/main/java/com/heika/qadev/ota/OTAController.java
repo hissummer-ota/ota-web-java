@@ -296,7 +296,7 @@ public class OTAController {
                                 @RequestParam CommonsMultipartFile app) {
 
         String appFileName = app.getOriginalFilename();
-        if(!appFileName.endsWith(".apk") || !appFileName.endsWith(".ipa")){
+        if(!(appFileName.endsWith(".apk") || appFileName.endsWith(".ipa"))){
             sendMSG(servletResponse, "上传应用失败，应用需为apk或者ipa文件!", false);
             return null;
         }
