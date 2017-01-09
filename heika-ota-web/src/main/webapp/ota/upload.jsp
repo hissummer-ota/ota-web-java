@@ -102,11 +102,13 @@
                         <legend>应用信息</legend>
                         <label for="app">应用包:</label>
                         <input type="file" name="app" accept=".apk,.ipa"><br/><br/>
+                        <!--
                         <label for="type">平台:</label>
                         <select name="type">
                             <option value="android">ANDROID</option>
                             <option value="ios">IOS</option>
                         </select> <br/><br/>
+                        -->
                         <label for="version">版本:</label>
                         <input type="text" name="version" placeholder="COMPATIBLITY" value="PAY-DAY-LOAN"><br/><br/>
                         <label for="codeBranch">代码分支:</label>

@@ -291,8 +291,23 @@ public class OTAController {
 //    private String appContentType;
 
     @RequestMapping("/ota/upload_manual")
-    public String upload_manual(HttpServletRequest servletRequest, HttpServletResponse servletResponse, String type,
-                                String buildId, String version, String env, String codeBranch, String comments, @RequestParam CommonsMultipartFile app) {
+    public String upload_manual(HttpServletRequest servletRequest, HttpServletResponse servletResponse,
+                                String buildId, String version, String env, String codeBranch, String comments,
+                                @RequestParam CommonsMultipartFile app) {
+
+        String appFileName = app.getOriginalFilename();
+        if(!appFileName.endsWith(".apk") || !appFileName.endsWith(".apk")){
+            sendMSG(servletResponse, "上传应用失败，应用需为apk或者ipa文件!", false);
+            return null;
+        }
+
+        String type;
+
+        if(appFileName.endsWith(".apk")){
+            type = OTAUtility.KEY_ANDROID;
+        } else {
+            type = OTAUtility.KEY_IOS;
+        }
 
         if(comments == null || comments.trim().length() == 0) {
             comments = getComments(OTAUtility.CONSTANTS_UPLOADTYPE_MANUAL, buildId, env);
@@ -300,19 +315,8 @@ public class OTAController {
 
         JSONObject jsonObj = getCommonFileJsonObj(buildId,env,version,comments,codeBranch);
 
-        String appFileName = app.getOriginalFilename();
         String appFileBasePath = getAppFileBasePath(type,version,env);
         String appFilePath = appFileBasePath + appFileName;
-
-        if(type.equalsIgnoreCase(OTAUtility.KEY_ANDROID) && !appFileName.endsWith(".apk")){
-            sendMSG(servletResponse, "上传应用失败，Android 应用需为apk文件!", false);
-            return null;
-        }
-
-        if(type.equalsIgnoreCase(OTAUtility.KEY_IOS) && !appFileName.endsWith(".ipa")){
-            sendMSG(servletResponse, "上传应用失败，IOS 应用需为ipa文件!", false);
-            return null;
-        }
 
         File appFile = new File(appFilePath);
 
