@@ -88,7 +88,7 @@
                                 }
 
                                 out.println("<hr>");
-                                out.println("<span class=\"buildspan\">BuildId: <a href=\"" + OTAUtility.JENKINS_ANDROID_URL + buildId + "\" target=\"\"> " + buildId + " </a></span>");
+//                                out.println("<span class=\"buildspan\">BuildId: <a href=\"" + OTAUtility.JENKINS_ANDROID_URL + buildId + "\" target=\"\"> " + buildId + " </a></span>");
                                 out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                                 out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                                 out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
@@ -107,7 +107,7 @@
                                         "</div>");
 
                                 out.println("<hr>");
-                                out.println("<span class=\"buildspan\">BuildId: 手动上传 </a></span>");
+//                                out.println("<span class=\"buildspan\">BuildId: 手动上传 </a></span>");
                                 out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                                 out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                                 out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
@@ -131,11 +131,11 @@
                                     "</div>");
 
                             out.println("<hr>");
-                            if (uploadType.equalsIgnoreCase(OTAUtility.CONSTANTS_UPLOADTYPE_JENKINS)) {
-                                out.println("<span class=\"buildspan\">BuildId: <a href=\"" + OTAUtility.JENKINS_IOS_URL + buildId + "\" target=\"\"> " + buildId + " </a></span>");
-                            } else {
-                                out.println("<span class=\"buildspan\">BuildId: 手动上传 </a></span>");
-                            }
+//                            if (uploadType.equalsIgnoreCase(OTAUtility.CONSTANTS_UPLOADTYPE_JENKINS)) {
+//                                out.println("<span class=\"buildspan\">BuildId: <a href=\"" + OTAUtility.JENKINS_IOS_URL + buildId + "\" target=\"\"> " + buildId + " </a></span>");
+//                            } else {
+//                                out.println("<span class=\"buildspan\">BuildId: 手动上传 </a></span>");
+//                            }
                             out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                             out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                             out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
