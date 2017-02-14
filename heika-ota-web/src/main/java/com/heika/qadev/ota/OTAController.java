@@ -138,9 +138,9 @@ public class OTAController {
                     String apkName = apkPng.substring(apkPng.indexOf("outputs/apk/"), apkPng.indexOf(".png")).substring("outputs/apk/".length());
                     apkName = apkName.replace(":", "-");
 
-                    if (!apkName.startsWith("heika_")){
-                        continue;
-                    }
+//                    if (!apkName.startsWith("heika_")){
+//                        continue;
+//                    }
 
                     apkList.add(apkName);
 
