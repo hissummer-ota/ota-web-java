@@ -116,7 +116,7 @@ public class OTAController {
     }
 
     @RequestMapping("/ota/delete/{type}/{buildTime}")
-    public String delete(@PathVariable("type") String type, @PathVariable("buildTime") String buildTime) {
+    public String delete(@PathVariable("type") String type, @PathVariable("buildTime") String buildTime, ModelMap modelMap) throws Exception {
         LOCK_FILE.writeLock().lock();
 
         try {
@@ -135,7 +135,7 @@ public class OTAController {
                     JSONArray files = dataJson.getJSONArray(OTAUtility.KEY_JSON_APPFILE);
                     int size = files.size();
                     for (int i = 0; i < size; i++) {
-                        String fileName = (String) files.get(0);
+                        String fileName = (String) files.get(i);
                         FileUtils.forceDelete(new File(basePath + fileName));
                     }
 
@@ -161,7 +161,7 @@ public class OTAController {
 
         LOCK_FILE.writeLock().unlock();
 
-        return "ota/list";
+        return list(type, modelMap);
     }
 
     public static void main(String[] args){
