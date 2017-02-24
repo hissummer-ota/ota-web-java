@@ -142,13 +142,23 @@ public class OTAController {
                     String env = dataJson.getString(OTAUtility.KEY_JSON_ENV);
                     String basePath = getAppFileBasePath(type, version, env);
 
-                    JSONArray files = dataJson.getJSONArray(OTAUtility.KEY_JSON_APPFILE);
-                    int size = files.size();
-                    for (int i = 0; i < size; i++) {
-                        String fileName = (String) files.get(i);
+                    Object appFile = dataJson.get(OTAUtility.KEY_JSON_APPFILE);
+                    if(appFile instanceof String){
+                        String fileName = (String) appFile;
                         FileUtils.forceDelete(new File(basePath + fileName));
 
                         OTAUtility.writeFile(deleteLogFile.getAbsolutePath(), "Delete File : " + basePath + fileName);
+                    }
+
+                    if(appFile instanceof JSONArray) {
+                        JSONArray files = (JSONArray) appFile;
+                        int size = files.size();
+                        for (int i = 0; i < size; i++) {
+                            String fileName = (String) files.get(i);
+                            FileUtils.forceDelete(new File(basePath + fileName));
+
+                            OTAUtility.writeFile(deleteLogFile.getAbsolutePath(), "Delete File : " + basePath + fileName);
+                        }
                     }
 
                     dataToDelete = data;
