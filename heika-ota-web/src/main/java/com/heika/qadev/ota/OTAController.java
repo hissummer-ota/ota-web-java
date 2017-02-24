@@ -1,8 +1,11 @@
 package com.heika.qadev.ota;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ContextLoader;
@@ -110,6 +113,65 @@ public class OTAController {
             e.printStackTrace();
             sendMSG(servletResponse, e.toString(), false);
         }
+    }
+
+    @RequestMapping("/ota/delete/{type}/{buildTime}")
+    public String delete(@PathVariable("type") String type, @PathVariable("buildTime") String buildTime) {
+        LOCK_FILE.writeLock().lock();
+
+        try {
+            String dataPath = getFileByFileType(type);
+            List<String> dataS = OTAUtility.readFileAsListOfStrings(dataPath);
+
+            String dataToDelete = null;
+            for (String data : dataS) {
+                JSONObject dataJson = JSONObject.parseObject(data);
+                String _buildTime = dataJson.getString(OTAUtility.KEY_JSON_BUILDTIME);
+                if (_buildTime.equals(buildTime)) {
+                    String version = dataJson.getString(OTAUtility.KEY_JSON_VERSION);
+                    String env = dataJson.getString(OTAUtility.KEY_JSON_ENV);
+                    String basePath = getAppFileBasePath(type, version, env);
+
+                    JSONArray files = dataJson.getJSONArray(OTAUtility.KEY_JSON_APPFILE);
+                    int size = files.size();
+                    for (int i = 0; i < size; i++) {
+                        String fileName = (String) files.get(0);
+                        FileUtils.forceDelete(new File(basePath + fileName));
+                    }
+
+                    dataToDelete = data;
+
+                    break;
+                }
+            }
+
+            dataS.remove(dataToDelete);
+            File dataFile = new File(dataPath);
+            File dataBackupFile = new File(dataFile.getParentFile(),
+                    "datafilebackup/" + dataFile.getName() + "." + simpleFileNameDateFormat.format(new Date()));
+            FileUtils.moveFile(dataFile, dataBackupFile);
+
+            for(String content : dataS) {
+                OTAUtility.writeFile(dataPath, content);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        LOCK_FILE.writeLock().unlock();
+
+        return "ota/list";
+    }
+
+    public static void main(String[] args){
+        File file = new File("test");
+        File file2 = new File(file.getParentFile(), "datafilebackup/" + file.getName() + "." + simpleFileNameDateFormat.format(new Date()));
+
+
+        System.out.println(file.getAbsolutePath());
+        System.out.println(file2.getAbsolutePath());
+        System.out.println(file2.getParentFile().getAbsolutePath());
     }
 
     @RequestMapping(value = "/ota/upload")
@@ -272,6 +334,7 @@ public class OTAController {
 
 
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+    private static final SimpleDateFormat simpleFileNameDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private JSONObject getCommonFileJsonObj(String buildId, String env, String version, String comments, String codeBranch) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(OTAUtility.KEY_JSON_BUILDID, buildId);
@@ -285,10 +348,6 @@ public class OTAController {
         return jsonObject;
     }
 
-
-//    private File app;
-//    private String appFileName;
-//    private String appContentType;
 
     @RequestMapping("/ota/upload_manual")
     public String upload_manual(HttpServletRequest servletRequest, HttpServletResponse servletResponse,
