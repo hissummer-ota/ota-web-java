@@ -92,7 +92,7 @@
                                 out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                                 out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                                 out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
-                                out.println("<span class=\"buildspan\"><a href=\"/ota/delete/android/" + buildTime + "\">删除</a></span>");
+                                out.println("<span class=\"buildspan\"><a href=\"/ota/delete/android/" + buildTime + "\" onclick=\"return confirm('确定删除');\" >删除</a></span>");
 //                                out.println("<span class=\"buildspan\"><a href=\"" + OTAUtility.JENKINS_ANDROID_URL + buildId + "/changes\">更新记录</a></span>");
                                 out.println("<br/>");
                                 out.println("<span class=\"buildspan comments\">备注: " + comments + "</span>");
@@ -112,7 +112,7 @@
                                 out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                                 out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                                 out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
-                                out.println("<span class=\"buildspan\"><a href=\"/ota/delete/android/" + buildTime + "\">删除</a></span>");
+                                out.println("<span class=\"buildspan\"><a href=\"/ota/delete/android/" + buildTime + "\" onclick=\"return confirm('确定删除');\" >删除</a></span>");
                                 out.println("<br/>");
                                 out.println("<span class=\"buildspan comments\">备注: " + comments + "</span></div>");
                             }
@@ -141,7 +141,7 @@
                             out.println("<span class=\"buildspan\">代码分支: " + codeBranch + "</span>");
                             out.println("<span class=\"buildspan\">环境: " + env + "</span>");
                             out.println("<span class=\"buildspan\">构建时间: " + buildTime + "</span>");
-                            out.println("<span class=\"buildspan\"><a href=\"/ota/delete/ios/" + buildTime + "\">删除</a></span>");
+                            out.println("<span class=\"buildspan\"><a href=\"/ota/delete/ios/" + buildTime + "\" onclick=\"return confirm('确定删除');\" >删除</a></span>");
                             out.println("<br/>");
                             out.println("<span class=\"buildspan comments\">备注: " + comments + "</span></div>");
                         }
