@@ -119,8 +119,15 @@ public class OTAController {
     public String delete(@PathVariable("type") String type, @PathVariable("buildTime") String buildTime, ModelMap modelMap) throws Exception {
         LOCK_FILE.writeLock().lock();
 
+        String dataPath = getFileByFileType(type);
+        File dataFile = new File(dataPath);
+        File dataBackupFile = new File(dataFile.getParentFile(),
+                "datafilebackup/" + dataFile.getName() + "." + simpleFileNameDateFormat.format(new Date()));
+        dataBackupFile.getParentFile().mkdirs();
+
+        File deleteLogFile = new File(dataFile.getParentFile(), "delete.log");
+
         try {
-            String dataPath = getFileByFileType(type);
             List<String> dataS = OTAUtility.readFileAsListOfStrings(dataPath);
 
             String dataToDelete = null;
@@ -128,6 +135,9 @@ public class OTAController {
                 JSONObject dataJson = JSONObject.parseObject(data);
                 String _buildTime = dataJson.getString(OTAUtility.KEY_JSON_BUILDTIME);
                 if (_buildTime.equals(buildTime)) {
+
+                    OTAUtility.writeFile(deleteLogFile.getAbsolutePath(), "TO DELETE: " + data);
+
                     String version = dataJson.getString(OTAUtility.KEY_JSON_VERSION);
                     String env = dataJson.getString(OTAUtility.KEY_JSON_ENV);
                     String basePath = getAppFileBasePath(type, version, env);
@@ -146,10 +156,6 @@ public class OTAController {
             }
 
             dataS.remove(dataToDelete);
-            File dataFile = new File(dataPath);
-            File dataBackupFile = new File(dataFile.getParentFile(),
-                    "datafilebackup/" + dataFile.getName() + "." + simpleFileNameDateFormat.format(new Date()));
-            dataBackupFile.getParentFile().mkdirs();
 
             FileUtils.moveFile(dataFile, dataBackupFile);
 
