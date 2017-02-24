@@ -149,6 +149,8 @@ public class OTAController {
             File dataFile = new File(dataPath);
             File dataBackupFile = new File(dataFile.getParentFile(),
                     "datafilebackup/" + dataFile.getName() + "." + simpleFileNameDateFormat.format(new Date()));
+            dataBackupFile.getParentFile().mkdirs();
+
             FileUtils.moveFile(dataFile, dataBackupFile);
 
             for(String content : dataS) {
