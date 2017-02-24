@@ -147,6 +147,8 @@ public class OTAController {
                     for (int i = 0; i < size; i++) {
                         String fileName = (String) files.get(i);
                         FileUtils.forceDelete(new File(basePath + fileName));
+
+                        OTAUtility.writeFile(deleteLogFile.getAbsolutePath(), "Delete File : " + basePath + fileName);
                     }
 
                     dataToDelete = data;
@@ -164,6 +166,7 @@ public class OTAController {
             }
 
         } catch (Exception e){
+            OTAUtility.writeFile(deleteLogFile.getAbsolutePath(), "Exception: " + e);
             e.printStackTrace();
         }
 
